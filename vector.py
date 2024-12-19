@@ -20,7 +20,7 @@ class Vector:
     def magnitude(self):
         return math.sqrt(self.dot_product(self))
 
-    # Метод для нормализации вектора
+    # Метод для нормализации вектора (показывает куда направлен вектор)
     def normalize(self):
         return self / self.magnitude()
 

@@ -2,7 +2,6 @@ from math import sqrt
 
 
 class Sphere:
-    """Sphere is the only 3D shape implemented. Has center, radius and material"""
 
     def __init__(self, center, radius, material):
         self.center = center
@@ -11,21 +10,26 @@ class Sphere:
 
     # Метод определяет пересекает ли заданный луч сферу
     def intersects(self, ray):
-        """Checks if ray intersects this sphere. returns distance to intersection or None if there is no intersection"""
 
+        # sphere_to_ray - вектор от центра сферы до начальной точки луча
         sphere_to_ray = ray.origin - self.center
 
+        # b - коэффициент в квадратном уравнении пересечения.
         b = 2 * ray.direction.dot_product(sphere_to_ray)
+
+        # c — свободный член квадратного уравнения.
         c = sphere_to_ray.dot_product(sphere_to_ray) - self.radius * self.radius
+
+        # Вычисление дискриминанта
         discriminant = b * b - 4 * c
 
+        # Если discriminant >= 0, то есть пересечение
         if discriminant >= 0:
             dist = (-b - sqrt(discriminant)) / 2
             if dist > 0:
                 return dist
         return None
-    
-    def normal(self, surface_point):
-        """Returns surface normal to the point on sphere's surface"""
 
+    # Метод вычисляет нормаль (перпендикуляр) к поверхности сферы в заданной точке
+    def normal(self, surface_point):
         return (surface_point - self.center).normalize()

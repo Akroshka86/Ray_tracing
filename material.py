@@ -1,8 +1,7 @@
 from color import Color
 
-
+# Класс описывает базовый материал, который может быть применён к объекту на сцене
 class Material:
-    """Material has color and properties which tells us how it reacts to light"""
 
     def __init__(
         self,
@@ -12,10 +11,19 @@ class Material:
         specular=1.0,
         reflection=0.5,
     ):
+        # Цвет материала
         self.color = color
+
+        # Освещение которое будет распределяться по поверхности
         self.ambient = ambient
+
+        # Диффузное освещение описывает как материал рассеивает свет, чем выше, тем ярче поверхность будет освещаться
         self.diffuse = diffuse
+
+        # Блики, определяет как материал отражает свет от источников света
         self.specular = specular
+
+        # Отражение материала, насколько сильно материал отражает свет, чем выше тем зеркальнее будет материал
         self.reflection = reflection
 
     def color_at(self, position):
@@ -23,7 +31,6 @@ class Material:
 
 
 class ChequeredMaterial:
-    """Material which has a chessboard pattern based on two colors"""
 
     def __init__(
         self,
@@ -41,6 +48,7 @@ class ChequeredMaterial:
         self.specular = specular
         self.reflection = reflection
 
+    # Метод создает шахматный узор
     def color_at(self, position):
         if int((position.x + 5.0) * 3.0) % 2 == int(position.z * 3.0) % 2:
             return self.color1

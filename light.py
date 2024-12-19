@@ -1,8 +1,7 @@
 from color import Color
 
-
+# Представляет точечный источник света, который используется для освещения объектов на сцене.
 class Light:
-    """ "Light represents a point light sourse of a certain color"""
 
     def __init__(self, position, color=Color.from_hex("#FFFFFF")):
         self.position = position
